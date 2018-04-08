@@ -1,6 +1,6 @@
 const Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 const LED = new Gpio(4, 'out'); //use GPIO pin 4 as output
-const pushButton = new Gpio(17, 'in', 'both'); //use GPIO pin 17 as input, and 'both' button presses, and releases should be handled
+const pushButton = new Gpio(17, 'in', 'both', { debounceTimeout: 10 }); //use GPIO pin 17 as input, and 'both' button presses, and releases should be handled
 
 pushButton.watch(function (err, value) { //Watch for hardware interrupts on pushButton GPIO, specify callback function
   if (err) { //if an error
