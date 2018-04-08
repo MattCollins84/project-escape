@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "node-lifx": "^0.8.0",
     "onoff": "^3.0.2"
   }
 }
