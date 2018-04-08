@@ -27,9 +27,12 @@ client.on('light-new', function(light) {
     const allSet = circuits.every(c => c.set === true);
     if (allSet) {
       console.log("All circuits are set")
+    } else {
+      const missing = circuits.filter(circuit => !circuit.set).map(circuit => circuit.colour)
+      console.log(`Still missing ${missing.join(", ")}`)
     }
   }
-  
+
 });
 
 client.init();
