@@ -19,7 +19,7 @@ const updateCircuit = (circuit, value) => {
   checkCircuits();
 }
 
-const checkCircuit = () => {
+const checkCircuits = () => {
   const allSet = circuits.every(c => c.set === true);
   if (allSet) {
     console.log("All circuits are set")
