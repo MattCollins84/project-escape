@@ -10,6 +10,8 @@ const circuits = [
 
 client.on('light-new', function(light) {
   
+  light.on(0);
+
   circuits.forEach(circuit => {
     circuit.pin.watch((err, value) => {
       if (err) return console.error('There was an error', err);
@@ -26,10 +28,12 @@ client.on('light-new', function(light) {
   const checkCircuits = () => {
     const allSet = circuits.every(c => c.set === true);
     if (allSet) {
-      console.log("All circuits are set")
+      console.log("All circuits are set");
+      light.off(2000)
     } else {
       const missing = circuits.filter(circuit => !circuit.set).map(circuit => circuit.colour)
       console.log(`Still missing ${missing.join(", ")}`)
+      light.on(2000);
     }
   }
 
