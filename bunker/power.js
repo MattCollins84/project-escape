@@ -2,10 +2,11 @@ const GPIO = require('onoff').Gpio;
 const LifxClient = require('node-lifx').Client;
 const client = new LifxClient();
 
-
 client.on('light-new', function(light) {
   console.log(light);
 });
+
+client.init();
 
 const circuits = [
   { colour: 'red', set: false, pin: new GPIO(17, 'in', 'both', { debounceTimeout: 10 }) },
