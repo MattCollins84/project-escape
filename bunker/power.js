@@ -10,6 +10,7 @@ const circuits = [
 
 client.on('light-new', function(light) {
   
+  
   light.on(0);
 
   circuits.forEach(circuit => {
