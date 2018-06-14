@@ -26,9 +26,11 @@ const checkCircuits = () => {
   const allSet = circuits.every(c => c.set === true);
   if (allSet) {
     console.log("All circuits are set");
+    lock.writeSync(0)
   } else {
     const missing = circuits.filter(circuit => !circuit.set).map(circuit => circuit.name)
     console.log(`Still missing ${missing.join(", ")}`)
+    lock.writeSync(1)
   }
 }
 
