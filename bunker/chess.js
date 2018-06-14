@@ -36,5 +36,8 @@ function unexportOnClose() {
   });
 };
 
+
+checkCircuits()
+
 //function to run when user closes using ctrl+c
 process.on('SIGINT', unexportOnClose);
