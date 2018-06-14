@@ -16,5 +16,9 @@ function unexportOnClose() {
   magnet.unexport();
 };
 
+setInterval(() => {
+
+}, 1000)
+
 //function to run when user closes using ctrl+c
 process.on('SIGINT', unexportOnClose);
