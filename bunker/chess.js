@@ -3,7 +3,7 @@ const lock = new GPIO(4, 'out');
 
 const circuits = [
   { colour: 'red', set: false, pin: new GPIO(17, 'in', 'both', { debounceTimeout: 10 }) },
-  // { colour: 'green', set: false, pin: new GPIO(27, 'in', 'both', { debounceTimeout: 10 }) }
+  { colour: 'green', set: false, pin: new GPIO(27, 'in', 'both', { debounceTimeout: 10 }) }
 ]
 
 circuits.forEach(circuit => {
