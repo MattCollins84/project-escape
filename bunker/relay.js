@@ -7,5 +7,10 @@ setInterval(() => {
   lock.writeSync(value ^ 1);
 }, 1000)
 
+//function to run when exiting program
+function unexportOnClose() {
+  lock.unexport();
+};
+
 //function to run when user closes using ctrl+c
 process.on('SIGINT', unexportOnClose);
