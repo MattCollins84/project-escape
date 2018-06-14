@@ -1,5 +1,5 @@
 const GPIO = require('onoff').Gpio;
-const lock = new Gpio(4, 'out');    // Export GPIO4 as an output
+const lock = new GPIO(4, 'out');    // Export GPIO4 as an output
 
 lock.writeSync(1)
 
