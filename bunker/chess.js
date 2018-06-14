@@ -5,14 +5,13 @@ const magnet = new GPIO(17, 'in', 'both', { debounceTimeout: 10 });
 magnet.watch((err, value) => {
   if (err) return console.error('There was an error', err);
   console.log(value);
-  lock.writeSync(!value)
+  lock.writeSync(value ^ 1)
 })
 
 //function to run when exiting program
 function unexportOnClose() {
-  circuits.forEach(circuit => {
-    circuit.pin.unexport();
-  });
+  lock.unexport();
+  magnet.unexport();
 };
 
 //function to run when user closes using ctrl+c
