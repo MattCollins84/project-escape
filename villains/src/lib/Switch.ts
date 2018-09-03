@@ -20,6 +20,7 @@ export class Switch extends EventEmitter {
     this.pin = new Gpio(pin, direction, edge, options)
 
     this.pin.watch((err, value) => {
+      console.log('change', err, value)
       if (err) return this.emit('error', err);
       this.powerValue = !!value;
       if (value) {
