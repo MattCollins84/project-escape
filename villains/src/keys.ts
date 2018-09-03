@@ -15,12 +15,12 @@ const compareValues = () => {
   if (!blueSwitch.value) return false;
   
    if (Math.abs(redSwitch.date - blueSwitch.date) <= 2000) {
-    socket.emit('pauseTimer', { name: 'villains' })
-    socket.emit('doSuccess', { name: 'villains' })
+    socket.emit('pauseTimer', { name: 'superhero' })
+    socket.emit('doSuccess', { name: 'superhero' })
   }
 
   else {
-    socket.emit('customEvent', { name: 'villains', event: 'denied' })
+    socket.emit('customEvent', { name: 'superhero', event: 'denied' })
   }
 
 }
