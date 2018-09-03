@@ -3,13 +3,7 @@
     "outDir": "./build/",
     "module": "commonjs",
     "target": "es6",
-    "sourceMap": true,
-    "typeRoots": [
-        "typings",
-        "node_modules/@types"
-    ],
-    "noUnusedLocals": true,
-    "noUnusedParameters": false
+    "sourceMap": true
   },
   "include": [
     "./src/**/*"

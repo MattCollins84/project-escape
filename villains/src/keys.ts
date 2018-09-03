@@ -27,3 +27,5 @@ const compareValues = () => {
 
 redSwitch.on('value', compareValues)
 blueSwitch.on('value', compareValues)
+
+console.log('hi')
