@@ -9,7 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "onoff": "^3.2.1"
+    "onoff": "^3.2.1",
+    "optimist": "^0.6.1",
+    "socket.io-client": "^2.1.1"
   },
   "devDependencies": {
     "@types/node": "^10.9.4"

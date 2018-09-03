@@ -1,14 +1,14 @@
-import { EventEmitter } from "events";
-import { Gpio } from 'onoff';
-'in' | 'out' | 'high' | 'low';
-'none' | 'rising' | 'falling' | 'both';
-export class Switch extends EventEmitter {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const events_1 = require("events");
+const onoff_1 = require("onoff");
+class Switch extends events_1.EventEmitter {
     constructor(pin, direction, edge, options = {}) {
         super();
         this.pin = null;
         this.setDate = null;
         this.powerValue = false;
-        this.pin = new Gpio(pin, direction, edge, options);
+        this.pin = new onoff_1.Gpio(pin, direction, edge, options);
         this.pin.watch((err, value) => {
             console.log('change', err, value);
             if (err)
@@ -36,4 +36,5 @@ export class Switch extends EventEmitter {
         this.pin.writeSync(1);
     }
 }
+exports.Switch = Switch;
 //# sourceMappingURL=Switch.js.map

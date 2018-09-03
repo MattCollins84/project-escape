@@ -1,11 +1,13 @@
-import { Switch } from './lib/Switch';
-const one = new Switch(4, 'in', 'rising', { debounceTimeout: 10 });
-const two = new Switch(17, 'in', 'rising', { debounceTimeout: 10 });
-const three = new Switch(17, 'in', 'rising', { debounceTimeout: 10 });
-const four = new Switch(17, 'in', 'rising', { debounceTimeout: 10 });
-const five = new Switch(17, 'in', 'rising', { debounceTimeout: 10 });
-const six = new Switch(17, 'in', 'rising', { debounceTimeout: 10 });
-const latch = new Switch(4, 'out');
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const Switch_1 = require("./lib/Switch");
+const one = new Switch_1.Switch(4, 'in', 'rising', { debounceTimeout: 10 });
+const two = new Switch_1.Switch(17, 'in', 'rising', { debounceTimeout: 10 });
+const three = new Switch_1.Switch(17, 'in', 'rising', { debounceTimeout: 10 });
+const four = new Switch_1.Switch(17, 'in', 'rising', { debounceTimeout: 10 });
+const five = new Switch_1.Switch(17, 'in', 'rising', { debounceTimeout: 10 });
+const six = new Switch_1.Switch(17, 'in', 'rising', { debounceTimeout: 10 });
+const latch = new Switch_1.Switch(4, 'out');
 const data = {
     lastNumber: null
 };
