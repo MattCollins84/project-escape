@@ -26,6 +26,6 @@ console.log('blue value', blueSwitch.value)
 }
 
 // redSwitch.on('value', compareValues)
-// blueSwitch.on('value', compareValues)
+blueSwitch.on('value', compareValues)
 
 console.log('hi')
