@@ -11,22 +11,19 @@ const blueSwitch = new Switch(17, 'in', 'both', { debounceTimeout: 100 })
 
 const compareValues = () => {
 
-  // if (!redSwitch.value) return false;
-  // if (!blueSwitch.value) return false;
-  console.log('blue value', blueSwitch.value)
-  console.log('red value', redSwitch.value)
-  // if (blueSwitch.value) {
-  //   socket.emit('pauseTimer', { name: 'superhero' })
-  //   socket.emit('doSuccess', { name: 'superhero' })
-  // }
+  if (!redSwitch.value) return false;
+  if (!blueSwitch.value) return false;
+  
+   if (Math.abs(redSwitch.date - blueSwitch.date) <= 2000) {
+    socket.emit('pauseTimer', { name: 'villains' })
+    socket.emit('doSuccess', { name: 'villains' })
+  }
 
-  // else {
-  //   socket.emit('customEvent', { name: 'superhero', event: 'denied' })
-  // }
+  else {
+    socket.emit('customEvent', { name: 'villains', event: 'denied' })
+  }
 
 }
 
 redSwitch.on('value', compareValues)
 blueSwitch.on('value', compareValues)
-
-console.log('hi')
