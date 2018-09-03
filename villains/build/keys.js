@@ -6,7 +6,7 @@ const io = require("socket.io-client");
 const gameHost = optimist_1.argv.host ? optimist_1.argv.host : 'http://localhost';
 const gamePort = optimist_1.argv.port ? optimist_1.argv.port : 5000;
 const socket = io(`${gameHost}:${gamePort}`);
-const redSwitch = new Switch_1.Switch(4, 'in', 'both', { debounceTimeout: 100 });
+const redSwitch = new Switch_1.Switch(27, 'in', 'both', { debounceTimeout: 100 });
 const blueSwitch = new Switch_1.Switch(17, 'in', 'both', { debounceTimeout: 100 });
 const compareValues = () => {
     // if (!redSwitch.value) return false;
