@@ -37,9 +37,9 @@ one.on('value', () => {
 two.on('value', () => {
   recordPush(2)
 })
-three.on('value', () => {
-  recordPush(3)
-})
+// three.on('value', () => {
+//   recordPush(3)
+// })
 four.on('value', () => {
   recordPush(4)
 })
