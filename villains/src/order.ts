@@ -3,15 +3,13 @@ import { Switch } from './lib/Switch';
 const one = new Switch(17, 'in', 'rising', { debounceTimeout: 100 })
 const two = new Switch(27, 'in', 'rising', { debounceTimeout: 100 })
 const three = new Switch(22, 'in', 'rising', { debounceTimeout: 10 })
-// const four = new Switch(17, 'in', 'rising', { debounceTimeout: 10 })
+const four = new Switch(23, 'in', 'rising', { debounceTimeout: 10 })
 // const five = new Switch(17, 'in', 'rising', { debounceTimeout: 10 })
 // const six = new Switch(17, 'in', 'rising', { debounceTimeout: 10 })
 
 // const latch = new Switch(4, 'out')
 
-const correctSequence = [
-  1, 2, 1, 1
-]
+const correctSequence = [1, 2, 4, 3, 2]
 
 const enteredSequence = [];
 
@@ -42,9 +40,9 @@ two.on('value', () => {
 three.on('value', () => {
   recordPush(3)
 })
-// four.on('value', () => {
-//   recordPush(4)
-// })
+four.on('value', () => {
+  recordPush(4)
+})
 // five.on('value', () => {
 //   recordPush(5)
 // })
