@@ -8,40 +8,23 @@ const two = new Switch_1.Switch(27, 'in', 'rising', { debounceTimeout: 100 });
 // const five = new Switch(17, 'in', 'rising', { debounceTimeout: 10 })
 // const six = new Switch(17, 'in', 'rising', { debounceTimeout: 10 })
 // const latch = new Switch(4, 'out')
-const data = {
-    lastNumber: null
-};
+const correctSequence = [
+    1, 2, 1, 1
+];
+const enteredSequence = [];
 const recordPush = (number) => {
     console.log(number);
-    // if (data.lastNumber === null && number === 6) {
-    //   data.lastNumber = 6;
-    // } else if (data.lastNumber === 6 && number === 5) {
-    //   data.lastNumber = 5;
-    // } else if (data.lastNumber === 5 && number === 4) {
-    //   data.lastNumber = 4;
-    // } else if (data.lastNumber === 4 && number === 3) {
-    //   data.lastNumber = 3;
-    // } else if (data.lastNumber === 3 && number === 2) {
-    //   data.lastNumber = 2;
-    // } else if (data.lastNumber === 2 && number === 1) {
-    //   data.lastNumber = 1;
-    //   // latch.switchOn();
-    // } else {
-    //   data.lastNumber = null;
-    // }
-    if (data.lastNumber === null && number === 1) {
-        data.lastNumber = 1;
-    }
-    else if (data.lastNumber === 1 && number === 2) {
-        data.lastNumber = 2;
-        console.log('Correct sequence!');
-        console.log('resetting');
-        data.lastNumber = null;
+    const index = enteredSequence.length;
+    if (number === correctSequence[index]) {
+        enteredSequence.push(number);
     }
     else {
         console.log('Invalid sequence!');
-        data.lastNumber = null;
-        console.log('resetting');
+        enteredSequence.splice(0, enteredSequence.length);
+    }
+    if (enteredSequence.length === correctSequence.length) {
+        console.log('Correct sequence!');
+        enteredSequence.splice(0, enteredSequence.length);
     }
 };
 one.on('value', () => {
