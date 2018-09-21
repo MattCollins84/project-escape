@@ -1,4 +1,5 @@
 import { Switch } from './lib/Switch';
+import { Gpio as GPIO } from 'onoff'
 
 const one = new Switch(17, 'in', 'rising', { debounceTimeout: 100 })
 const two = new Switch(27, 'in', 'rising', { debounceTimeout: 100 })
@@ -6,6 +7,8 @@ const three = new Switch(22, 'in', 'rising', { debounceTimeout: 10 })
 const four = new Switch(26, 'in', 'rising', { debounceTimeout: 10 })
 // const five = new Switch(17, 'in', 'rising', { debounceTimeout: 10 })
 // const six = new Switch(17, 'in', 'rising', { debounceTimeout: 10 })
+
+const lock = new GPIO(4, 'out');
 
 // const latch = new Switch(4, 'out')
 
@@ -22,11 +25,13 @@ const recordPush = (number: number) => {
     enteredSequence.push(number)
   } else {
     console.log('Invalid sequence!')
+    lock.writeSync(0);
     enteredSequence.splice(0, enteredSequence.length)
   }
 
   if (enteredSequence.length === correctSequence.length) {
     console.log('Correct sequence!')
+    lock.writeSync(1);
     enteredSequence.splice(0, enteredSequence.length)
   }
 }
