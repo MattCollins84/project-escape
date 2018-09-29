@@ -4,7 +4,7 @@ import { Gpio as GPIO } from 'onoff'
 const one = new Switch(17, 'in', 'rising', { debounceTimeout: 100 })
 const two = new Switch(27, 'in', 'rising', { debounceTimeout: 100 })
 const three = new Switch(22, 'in', 'rising', { debounceTimeout: 10 })
-const four = new Switch(26, 'in', 'rising', { debounceTimeout: 10 })
+// const four = new Switch(26, 'in', 'rising', { debounceTimeout: 10 })
 // const five = new Switch(17, 'in', 'rising', { debounceTimeout: 10 })
 // const six = new Switch(17, 'in', 'rising', { debounceTimeout: 10 })
 
@@ -45,9 +45,9 @@ two.on('value', () => {
 three.on('value', () => {
   recordPush(3)
 })
-four.on('value', () => {
-  recordPush(4)
-})
+// four.on('value', () => {
+//   recordPush(4)
+// })
 // five.on('value', () => {
 //   recordPush(5)
 // })

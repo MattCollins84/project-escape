@@ -5,7 +5,7 @@ const onoff_1 = require("onoff");
 const one = new Switch_1.Switch(17, 'in', 'rising', { debounceTimeout: 100 });
 const two = new Switch_1.Switch(27, 'in', 'rising', { debounceTimeout: 100 });
 const three = new Switch_1.Switch(22, 'in', 'rising', { debounceTimeout: 10 });
-const four = new Switch_1.Switch(26, 'in', 'rising', { debounceTimeout: 10 });
+// const four = new Switch(26, 'in', 'rising', { debounceTimeout: 10 })
 // const five = new Switch(17, 'in', 'rising', { debounceTimeout: 10 })
 // const six = new Switch(17, 'in', 'rising', { debounceTimeout: 10 })
 const lock = new onoff_1.Gpio(4, 'out');
@@ -38,9 +38,9 @@ two.on('value', () => {
 three.on('value', () => {
     recordPush(3);
 });
-four.on('value', () => {
-    recordPush(4);
-});
+// four.on('value', () => {
+//   recordPush(4)
+// })
 // five.on('value', () => {
 //   recordPush(5)
 // })
