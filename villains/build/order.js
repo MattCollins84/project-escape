@@ -10,7 +10,7 @@ const three = new Switch_1.Switch(22, 'in', 'rising', { debounceTimeout: 10 });
 // const six = new Switch(17, 'in', 'rising', { debounceTimeout: 10 })
 const lock = new onoff_1.Gpio(4, 'out');
 // const latch = new Switch(4, 'out')
-const correctSequence = [1, 2, 4, 3, 2];
+const correctSequence = [1, 2, 3];
 const enteredSequence = [];
 const recordPush = (number) => {
     console.log(number);
