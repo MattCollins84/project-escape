@@ -1,12 +1,12 @@
 import { Switch } from './lib/Switch';
 import { Gpio as GPIO } from 'onoff'
 
-const one = new Switch(23, 'in', 'rising', { debounceTimeout: 100 })
-const two = new Switch(24, 'in', 'rising', { debounceTimeout: 100 })
-const three = new Switch(25, 'in', 'rising', { debounceTimeout: 100 })
-// const four = new Switch(26, 'in', 'rising', { debounceTimeout: 100 })
-// const five = new Switch(17, 'in', 'rising', { debounceTimeout: 100 })
-// const six = new Switch(17, 'in', 'rising', { debounceTimeout: 100 })
+const one = new Switch(17, 'in', 'rising', { debounceTimeout: 100 })
+const two = new Switch(27, 'in', 'rising', { debounceTimeout: 100 })
+const three = new Switch(22, 'in', 'rising', { debounceTimeout: 100 })
+const four = new Switch(23, 'in', 'rising', { debounceTimeout: 100 })
+const five = new Switch(24, 'in', 'rising', { debounceTimeout: 100 })
+const six = new Switch(25, 'in', 'rising', { debounceTimeout: 100 })
 
 const lock = new GPIO(4, 'out');
 
@@ -45,12 +45,12 @@ two.on('value', () => {
 three.on('value', () => {
   recordPush(3)
 })
-// four.on('value', () => {
-//   recordPush(4)
-// })
-// five.on('value', () => {
-//   recordPush(5)
-// })
-// six.on('value', () => {
-//   recordPush(6)
-// })
+four.on('value', () => {
+  recordPush(4)
+})
+five.on('value', () => {
+  recordPush(5)
+})
+six.on('value', () => {
+  recordPush(6)
+})
