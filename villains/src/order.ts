@@ -3,10 +3,10 @@ import { Gpio as GPIO } from 'onoff'
 
 const one = new Switch(23, 'in', 'rising', { debounceTimeout: 100 })
 const two = new Switch(24, 'in', 'rising', { debounceTimeout: 100 })
-const three = new Switch(25, 'in', 'rising', { debounceTimeout: 10 })
-// const four = new Switch(26, 'in', 'rising', { debounceTimeout: 10 })
-// const five = new Switch(17, 'in', 'rising', { debounceTimeout: 10 })
-// const six = new Switch(17, 'in', 'rising', { debounceTimeout: 10 })
+const three = new Switch(25, 'in', 'rising', { debounceTimeout: 100 })
+// const four = new Switch(26, 'in', 'rising', { debounceTimeout: 100 })
+// const five = new Switch(17, 'in', 'rising', { debounceTimeout: 100 })
+// const six = new Switch(17, 'in', 'rising', { debounceTimeout: 100 })
 
 const lock = new GPIO(4, 'out');
 
