@@ -10,7 +10,9 @@ const redSwitch = new Switch(5, 'in', 'both', { debounceTimeout: 100 })
 const blueSwitch = new Switch(6, 'in', 'both', { debounceTimeout: 100 })
 
 const compareValues = () => {
-
+  console.log('red', redSwitch.value)
+  console.log('blue', blueSwitch.value)
+  console.log('--')
   if (!redSwitch.value) return false;
   if (!blueSwitch.value) return false;
   
