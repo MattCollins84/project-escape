@@ -6,8 +6,8 @@ const gameHost = argv.host ? argv.host : 'http://localhost'
 const gamePort = argv.port ? argv.port : 5000
 
 const socket = io(`${gameHost}:${gamePort}`)
-const redSwitch = new Switch(17, 'in', 'both', { debounceTimeout: 100 })
-const blueSwitch = new Switch(27, 'in', 'both', { debounceTimeout: 100 })
+const redSwitch = new Switch(5, 'in', 'both', { debounceTimeout: 100 })
+const blueSwitch = new Switch(6, 'in', 'both', { debounceTimeout: 100 })
 
 const compareValues = () => {
   console.log('red', redSwitch.value)
