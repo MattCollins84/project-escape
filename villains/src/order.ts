@@ -1,12 +1,13 @@
 import { Switch } from './lib/Switch';
 import { Gpio as GPIO } from 'onoff'
 
-const one = new Switch(17, 'in', 'rising', { debounceTimeout: 100 })
-const two = new Switch(27, 'in', 'rising', { debounceTimeout: 100 })
-const three = new Switch(22, 'in', 'rising', { debounceTimeout: 100 })
-const four = new Switch(23, 'in', 'rising', { debounceTimeout: 100 })
-const five = new Switch(24, 'in', 'rising', { debounceTimeout: 100 })
-const six = new Switch(25, 'in', 'rising', { debounceTimeout: 100 })
+const debounce = 200;
+const one = new Switch(17, 'in', 'rising', { debounceTimeout: debounce })
+const two = new Switch(27, 'in', 'rising', { debounceTimeout: debounce })
+const three = new Switch(22, 'in', 'rising', { debounceTimeout: debounce })
+const four = new Switch(23, 'in', 'rising', { debounceTimeout: debounce })
+const five = new Switch(24, 'in', 'rising', { debounceTimeout: debounce })
+const six = new Switch(25, 'in', 'rising', { debounceTimeout: debounce })
 
 const lock = new GPIO(4, 'out');
 

@@ -2,12 +2,13 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const Switch_1 = require("./lib/Switch");
 const onoff_1 = require("onoff");
-const one = new Switch_1.Switch(17, 'in', 'rising', { debounceTimeout: 100 });
-const two = new Switch_1.Switch(27, 'in', 'rising', { debounceTimeout: 100 });
-const three = new Switch_1.Switch(22, 'in', 'rising', { debounceTimeout: 100 });
-const four = new Switch_1.Switch(23, 'in', 'rising', { debounceTimeout: 100 });
-const five = new Switch_1.Switch(24, 'in', 'rising', { debounceTimeout: 100 });
-const six = new Switch_1.Switch(25, 'in', 'rising', { debounceTimeout: 100 });
+const debounce = 200;
+const one = new Switch_1.Switch(17, 'in', 'rising', { debounceTimeout: debounce });
+const two = new Switch_1.Switch(27, 'in', 'rising', { debounceTimeout: debounce });
+const three = new Switch_1.Switch(22, 'in', 'rising', { debounceTimeout: debounce });
+const four = new Switch_1.Switch(23, 'in', 'rising', { debounceTimeout: debounce });
+const five = new Switch_1.Switch(24, 'in', 'rising', { debounceTimeout: debounce });
+const six = new Switch_1.Switch(25, 'in', 'rising', { debounceTimeout: debounce });
 const lock = new onoff_1.Gpio(4, 'out');
 // const latch = new Switch(4, 'out')
 const correctSequence = [1, 2, 3];
