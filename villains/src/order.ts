@@ -13,7 +13,7 @@ const lock = new GPIO(4, 'out');
 
 // const latch = new Switch(4, 'out')
 
-const correctSequence = [1, 2, 3]
+const correctSequence = [2, 5, 1, 6, 5]
 
 const enteredSequence = [];
 
