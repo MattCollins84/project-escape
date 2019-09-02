@@ -11,6 +11,7 @@
   "dependencies": {
     "onoff": "^3.2.1",
     "optimist": "^0.6.1",
+    "socket.io": "^2.2.0",
     "socket.io-client": "^2.1.1"
   },
   "devDependencies": {
