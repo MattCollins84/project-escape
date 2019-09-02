@@ -13,8 +13,8 @@ const config = {
   activated: false
 }
 
-io.on('connect', id => {
-  console.log('client connected', id)
+io.on('connect', socket => {
+  console.log('client connected', socket.id)
 })
 
 magnets.on('value', () => {
