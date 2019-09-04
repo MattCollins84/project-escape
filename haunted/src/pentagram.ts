@@ -31,6 +31,7 @@ app.get('/', function (req, res) {
  */
 const debounce = 200;
 const magnets = new Switch(17, 'in', 'both', { debounceTimeout: debounce });
+const reset = new Switch(27, 'in', 'both', { debounceTimeout: debounce });
 
 const config = {
   activated: false
@@ -48,4 +49,8 @@ magnets.on('value', () => {
     config.activated = true;
     console.log('Triggering video')
   }
+})
+
+reset.on('value', () => {
+  console.log('reset', reset.value)
 })

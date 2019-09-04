@@ -27,6 +27,7 @@ app.get('/', function (req, res) {
  */
 const debounce = 200;
 const magnets = new Switch_1.Switch(17, 'in', 'both', { debounceTimeout: debounce });
+const reset = new Switch_1.Switch(27, 'in', 'both', { debounceTimeout: debounce });
 const config = {
     activated: false
 };
@@ -40,5 +41,8 @@ magnets.on('value', () => {
         config.activated = true;
         console.log('Triggering video');
     }
+});
+reset.on('value', () => {
+    console.log('reset', reset.value);
 });
 //# sourceMappingURL=pentagram.js.map
