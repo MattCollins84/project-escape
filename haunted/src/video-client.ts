@@ -10,6 +10,6 @@ socket.on('connect', () => {
   console.log('connected to server')
 })
 
-socket.on('play-video', data => {
-  console.log('playing video', data)
+socket.on('play-video', () => {
+  console.log('playing video')
 })
