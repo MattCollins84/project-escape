@@ -20,11 +20,9 @@ io.on('connection', function (socket) {
 
 server.listen(port)
 
-app.get('/', function (req, res) {
-  const file = path.resolve(__dirname + '/../public/index.html');
-  console.log(file);
-  return res.sendFile(file);
-});
+const publicDir = path.resolve(__dirname + '/../public');
+console.log(publicDir)
+app.use(express.static(publicDir))
 
 /**
  * PI Stuff

@@ -4,20 +4,25 @@
     <title>Haunted Pentagram</title>
     <script src="/socket.io/socket.io.js"></script>
     <script>
+      var video = document.getElementById('video')
       var socket = io.connect();
       socket.on('connect', function() {
         console.log('connected')
       });
       socket.on('play-video', function (data) {
-        console.log('play video');
+        console.log('play');
+        video.currentTime = 0;
+        video.play();
       });
       socket.on('reset', function (data) {
         console.log('reset');
+        video.pause();
+        video.currentTime = 0;
       });
     </script>
   </head>
   <body>
-    <video width="320" height="240" controls>
+    <video width="320" height="240" controls id='video'>
       <source src="/haunted.mp4" type="video/mp4">
     </video>
   </body>
