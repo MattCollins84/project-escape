@@ -52,5 +52,9 @@ magnets.on('value', () => {
 })
 
 reset.on('value', () => {
-  console.log('reset', reset.value)
+  if (reset.value === true && config.activated === true) {
+    io.emit('reset');
+    config.activated = false;
+    console.log('resetting')
+  }
 })
