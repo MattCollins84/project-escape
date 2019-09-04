@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const Switch_1 = require("./lib/Switch");
 const SocketIO = require("socket.io");
 const optimist_1 = require("optimist");
 const express = require("express");
@@ -19,36 +20,31 @@ server.listen(port);
 const publicDir = path.resolve(__dirname + '/../public');
 console.log(publicDir);
 app.use(express.static(publicDir));
-// app.get('/', function (req, res) {
-//   const file = path.resolve(__dirname + '/../public/index.html');
-//   console.log(file);
-//   return res.sendFile(file);
-// });
 /**
  * PI Stuff
  */
-// const debounce = 200;
-// const magnets = new Switch(17, 'in', 'both', { debounceTimeout: debounce });
-// const reset = new Switch(27, 'in', 'both', { debounceTimeout: debounce });
-// const config = {
-//   activated: false
-// }
-// io.on('connect', socket => {
-//   console.log('client connected', socket.id)
-// })
-// magnets.on('value', () => {
-//   console.log(magnets.value)
-//   if (magnets.value && config.activated === false) {
-//     io.emit('play-video');
-//     config.activated = true;
-//     console.log('Triggering video')
-//   }
-// })
-// reset.on('value', () => {
-//   if (reset.value === true && config.activated === true) {
-//     io.emit('reset');
-//     config.activated = false;
-//     console.log('resetting')
-//   }
-// })
+const debounce = 200;
+const magnets = new Switch_1.Switch(17, 'in', 'both', { debounceTimeout: debounce });
+const reset = new Switch_1.Switch(27, 'in', 'both', { debounceTimeout: debounce });
+const config = {
+    activated: false
+};
+io.on('connect', socket => {
+    console.log('client connected', socket.id);
+});
+magnets.on('value', () => {
+    console.log(magnets.value);
+    if (magnets.value && config.activated === false) {
+        io.emit('play-video');
+        config.activated = true;
+        console.log('Triggering video');
+    }
+});
+reset.on('value', () => {
+    if (reset.value === true && config.activated === true) {
+        io.emit('reset');
+        config.activated = false;
+        console.log('resetting');
+    }
+});
 //# sourceMappingURL=pentagram.js.map
