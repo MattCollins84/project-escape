@@ -28,7 +28,6 @@
       });
       socket.on('play-video', function (data) {
         console.log('play');
-        video.webkitRequestFullscreen();
         video.muted = false;
         video.currentTime = 0;
         video.play();
