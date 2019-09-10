@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "node-lifx": "^0.8.0",
     "onoff": "^3.2.1",
     "optimist": "^0.6.1",
     "socket.io": "^2.2.0",

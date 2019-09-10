@@ -4,6 +4,8 @@ import { argv } from 'optimist'
 import * as express from 'express'
 import { Server } from 'http'
 import * as path from 'path'
+import { Client as LifxClient } from 'node-lifx';
+const client = new LifxClient();
 
 const port = argv.port ? argv.port : 5000
 
@@ -23,6 +25,19 @@ server.listen(port)
 const publicDir = path.resolve(__dirname + '/../public');
 console.log(publicDir)
 app.use(express.static(publicDir))
+
+const lights = [];
+const dimLights = () => {
+  lights.forEach(light => {
+    light.color(360, 100, 50, 3500, 500)
+  })
+}
+client.on('light-new', function(light) {
+  light.on(0);
+  lights.push(light)
+});
+
+client.init()
 
 /**
  * PI Stuff
@@ -46,9 +61,10 @@ magnets.on('value', () => {
   if (magnets.value && config.activated === false) {
     io.emit('play-video');
     config.activated = true;
+    dimLights();
     console.log('Triggering video')
   }
-  
+
 })
 
 reset.on('value', () => {
