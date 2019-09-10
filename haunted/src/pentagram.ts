@@ -27,14 +27,22 @@ console.log(publicDir)
 app.use(express.static(publicDir))
 
 const lights = [];
-const dimLights = () => {
+const lightsFull = function() {
   lights.forEach(light => {
+    light.on(0);
+    light.color(360, 100, 100, 3500, 500)
+  })
+}
+const dimLights = function() {
+  lights.forEach(light => {
+    light.on(0);
     light.color(360, 100, 50, 3500, 500)
   })
 }
+
 client.on('light-new', function(light) {
-  light.on(0);
-  lights.push(light)
+  lights.push(light);
+  lightsFull()
 });
 
 client.init()
