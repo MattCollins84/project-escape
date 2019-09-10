@@ -32,7 +32,7 @@ const lightsFull = function () {
 const dimLights = function () {
     lights.forEach(light => {
         light.on(0);
-        light.color(360, 100, 20, 3500, 500);
+        light.color(360, 100, 5, 3500, 500);
     });
 };
 client.on('light-new', function (light) {
@@ -51,6 +51,9 @@ const config = {
 };
 io.on('connect', socket => {
     console.log('client connected', socket.id);
+});
+io.on('video-ended', data => {
+    lightsFull();
 });
 magnets.on('value', () => {
     console.log('magnets', magnets.value);
