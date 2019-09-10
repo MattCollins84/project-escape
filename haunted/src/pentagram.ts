@@ -63,6 +63,7 @@ io.on('connect', socket => {
 });
 
 io.on('video-ended', data => {
+  console.log('video ended')
   lightsFull()
 })
 
