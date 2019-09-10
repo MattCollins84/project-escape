@@ -40,19 +40,25 @@ io.on('connect', socket => {
 })
 
 magnets.on('value', () => {
-  console.log(magnets.value)
+  
+  console.log('magnets', magnets.value)
 
   if (magnets.value && config.activated === false) {
     io.emit('play-video');
     config.activated = true;
     console.log('Triggering video')
   }
+  
 })
 
 reset.on('value', () => {
+  
+  console.log('reset', magnets.value)
+  
   if (reset.value === true && config.activated === true) {
     io.emit('reset');
     config.activated = false;
     console.log('resetting')
   }
+
 })

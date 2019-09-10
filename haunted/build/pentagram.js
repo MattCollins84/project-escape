@@ -33,7 +33,7 @@ io.on('connect', socket => {
     console.log('client connected', socket.id);
 });
 magnets.on('value', () => {
-    console.log(magnets.value);
+    console.log('magnets', magnets.value);
     if (magnets.value && config.activated === false) {
         io.emit('play-video');
         config.activated = true;
@@ -41,6 +41,7 @@ magnets.on('value', () => {
     }
 });
 reset.on('value', () => {
+    console.log('reset', magnets.value);
     if (reset.value === true && config.activated === true) {
         io.emit('reset');
         config.activated = false;
