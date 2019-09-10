@@ -47,13 +47,13 @@
       socket.on('play-video', function (data) {
         console.log('play');
         video.muted = false;
-        video.currentTime = 110;
+        video.currentTime = 0;
         video.play();
       });
       socket.on('reset', function (data) {
         console.log('reset');
         video.pause();
-        video.currentTime = 110;
+        video.currentTime = 0;
       });
     </script>
   </body>
