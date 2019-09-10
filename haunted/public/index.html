@@ -15,7 +15,7 @@
         console.log('connected')
         if (video.requestFullscreen) {
           video.requestFullscreen();
-        } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+        } else if (video.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
           video.webkitRequestFullscreen();
         }
         video.muted = false;
