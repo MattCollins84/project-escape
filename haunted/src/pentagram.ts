@@ -36,7 +36,7 @@ const lightsFull = function() {
 const dimLights = function() {
   lights.forEach(light => {
     light.on(0);
-    light.color(360, 100, 50, 3500, 500)
+    light.color(360, 100, 20, 3500, 500)
   })
 }
 
