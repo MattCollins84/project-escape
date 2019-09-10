@@ -78,10 +78,10 @@ magnets.on('value', () => {
 reset.on('value', () => {
   
   console.log('reset', magnets.value)
-  
   if (reset.value === true && config.activated === true) {
     io.emit('reset');
     config.activated = false;
+    lightsFull()
     console.log('resetting')
   }
 

@@ -23,14 +23,21 @@ const publicDir = path.resolve(__dirname + '/../public');
 console.log(publicDir);
 app.use(express.static(publicDir));
 const lights = [];
-const dimLights = () => {
+const lightsFull = function () {
     lights.forEach(light => {
+        light.on(0);
+        light.color(360, 100, 100, 3500, 500);
+    });
+};
+const dimLights = function () {
+    lights.forEach(light => {
+        light.on(0);
         light.color(360, 100, 50, 3500, 500);
     });
 };
 client.on('light-new', function (light) {
-    light.on(0);
     lights.push(light);
+    lightsFull();
 });
 client.init();
 /**
@@ -59,6 +66,7 @@ reset.on('value', () => {
     if (reset.value === true && config.activated === true) {
         io.emit('reset');
         config.activated = false;
+        lightsFull();
         console.log('resetting');
     }
 });
