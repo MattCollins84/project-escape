@@ -13,7 +13,7 @@
       var socket = io.connect();
       socket.on('connect', function() {
         console.log('connected')
-        video.webkitEnterFullScreen();
+        video.requestFullscreen();
         video.muted = false;
       });
       socket.on('play-video', function (data) {
