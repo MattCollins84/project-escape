@@ -60,12 +60,12 @@ const config = {
 
 io.on('connect', socket => {
   console.log('client connected', socket.id)
-});
 
-io.on('video-ended', data => {
-  console.log('video ended')
-  lightsFull()
-})
+  socket.on('video-ended', data => {
+    console.log('video ended')
+    lightsFull()
+  })
+});
 
 magnets.on('value', () => {
   
