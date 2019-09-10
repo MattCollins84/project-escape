@@ -13,15 +13,15 @@
       var socket = io.connect();
       socket.on('connect', function() {
         console.log('connected')
+      });
+      socket.on('play-video', function (data) {
+        console.log('play');
         if (video.requestFullscreen) {
           video.requestFullscreen();
         } else if (video.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
           video.webkitRequestFullscreen();
         }
         video.muted = false;
-      });
-      socket.on('play-video', function (data) {
-        console.log('play');
         video.currentTime = 0;
         video.play();
       });
