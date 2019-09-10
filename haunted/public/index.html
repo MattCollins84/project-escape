@@ -39,7 +39,7 @@
       var video = document.getElementById('video')
       video.onended = function(data) {
         console.log('video ended')
-        socket.emit('video-ended')
+        socket.emit('video-ended', true)
       }
       socket.on('connect', function() {
         console.log('connected')
