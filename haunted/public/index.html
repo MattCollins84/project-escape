@@ -16,11 +16,7 @@
       });
       socket.on('play-video', function (data) {
         console.log('play');
-        if (video.requestFullscreen) {
-          video.requestFullscreen();
-        } else if (video.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
-          video.webkitRequestFullscreen();
-        }
+        video.webkitRequestFullscreen();
         video.muted = false;
         video.currentTime = 0;
         video.play();
