@@ -26,7 +26,15 @@ const lights = [];
 const lightsFull = function () {
     lights.forEach(light => {
         light.on(0);
-        light.color(360, 100, 100, 3500, 500);
+        //light.color(360, 100, 100, 3500, 500)
+        light.colorRgb(255, 255, 255, 500);
+    });
+};
+const lightsReset = function () {
+    lights.forEach(light => {
+        light.on(0);
+        //light.color(360, 100, 100, 3500, 500)
+        light.colorRgb(0, 255, 0, 500);
     });
 };
 const dimLights = function () {
@@ -37,7 +45,10 @@ const dimLights = function () {
 };
 client.on('light-new', function (light) {
     lights.push(light);
-    lightsFull();
+    lightsReset();
+    setTimeout(function () {
+        lightsFull();
+    }, 1500);
 });
 client.init();
 /**
@@ -70,7 +81,10 @@ reset.on('value', () => {
     if (reset.value === true && config.activated === true) {
         io.emit('reset');
         config.activated = false;
-        lightsFull();
+        lightsReset();
+        setTimeout(function () {
+            lightsFull();
+        }, 1500);
         console.log('resetting');
     }
 });
