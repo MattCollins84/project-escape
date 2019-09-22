@@ -56,7 +56,8 @@ client.init();
  */
 const debounce = 200;
 const magnets = new Switch_1.Switch(17, 'in', 'both', { debounceTimeout: debounce });
-const reset = new Switch_1.Switch(27, 'in', 'both', { debounceTimeout: debounce });
+const reset = new Switch_1.Switch(27, 'in', 'rising', { debounceTimeout: debounce });
+const override = new Switch_1.Switch(22, 'in', 'rising', { debounceTimeout: debounce });
 const config = {
     activated: false
 };
@@ -74,6 +75,15 @@ magnets.on('value', () => {
         config.activated = true;
         dimLights();
         console.log('Triggering video');
+    }
+});
+override.on('value', () => {
+    console.log('override', override.value);
+    if (override.value && config.activated === false) {
+        io.emit('play-video');
+        config.activated = true;
+        dimLights();
+        console.log('Triggering video (override)');
     }
 });
 reset.on('value', () => {
