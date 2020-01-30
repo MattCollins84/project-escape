@@ -13,7 +13,7 @@ trigger.on('value', on => {
 reset.on('value', on => {
     console.log('reset', lock.readSync());
     if (lock.readSync())
-        return lock.writeSync(1);
-    return lock.writeSync(0);
+        return lock.writeSync(0);
+    return lock.writeSync(1);
 });
 //# sourceMappingURL=maglock.js.map
