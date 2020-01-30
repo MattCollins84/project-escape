@@ -5,11 +5,13 @@ const debounce = 200;
 const trigger = new Switch_1.Switch(17, 'in', 'rising', { debounceTimeout: debounce });
 const reset = new Switch_1.Switch(27, 'in', 'rising', { debounceTimeout: debounce });
 const lock = new Switch_1.Switch(4, 'out', 'rising', { debounceTimeout: debounce });
-trigger.on('value', () => {
+trigger.on('value', on => {
+    console.log('trigger');
     lock.switchOn();
 });
-reset.on('value', () => {
-    if (lock.value)
+reset.on('value', on => {
+    console.log('reset', on);
+    if (on)
         return lock.switchOff();
     return lock.switchOn();
 });

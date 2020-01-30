@@ -6,11 +6,13 @@ const reset = new Switch(27, 'in', 'rising', { debounceTimeout: debounce })
 
 const lock = new Switch(4, 'out', 'rising', { debounceTimeout: debounce })
 
-trigger.on('value', () => {
-  lock.switchOn()
+trigger.on('value', on => {
+  console.log('trigger')
+  lock.switchOn();
 })
 
-reset.on('value', () => {
-  if (lock.value) return lock.switchOff();
+reset.on('value', on => {
+  console.log('reset', on)
+  if (on) return lock.switchOff();
   return lock.switchOn()
 })
