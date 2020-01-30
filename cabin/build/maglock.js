@@ -10,8 +10,8 @@ trigger.on('value', on => {
     lock.switchOn();
 });
 reset.on('value', on => {
-    console.log('reset', on);
-    if (on)
+    console.log('reset', lock.value);
+    if (lock.value)
         return lock.switchOff();
     return lock.switchOn();
 });
