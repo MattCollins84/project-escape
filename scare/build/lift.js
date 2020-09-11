@@ -129,8 +129,8 @@ client.on('light-new', function (light) {
         lights.push(light);
         yield lightsReset();
         yield wait(2000);
-        yield flickerLights();
-        yield emergencyLights();
+        // await flickerLights()
+        // await emergencyLights()
     });
 });
 client.init();

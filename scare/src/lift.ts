@@ -118,8 +118,8 @@ client.on('light-new', async function(light) {
   lights.push(light);
   await lightsReset()
   await wait(2000)
-  await flickerLights()
-  await emergencyLights()
+  // await flickerLights()
+  // await emergencyLights()
 });
 
 client.init()
