@@ -65,43 +65,62 @@ const emergencyLights = function (transition = 500) {
         }
     });
 };
+const flicker = function (light) {
+    return __awaiter(this, void 0, void 0, function* () {
+        light.off(0);
+        light.on(50);
+        yield wait(300);
+        light.off(0);
+        light.on(50);
+        light.off(0);
+        light.on(50);
+        yield wait(300);
+    });
+};
+const flicker2 = function (light) {
+    return __awaiter(this, void 0, void 0, function* () {
+        light.off(0);
+        light.on(50);
+        yield wait(700);
+        light.off(0);
+        light.on(50);
+        yield wait(400);
+        light.off(0);
+        yield wait(400);
+        light.on(50);
+        yield wait(300);
+    });
+};
+const flicker3 = function (light) {
+    return __awaiter(this, void 0, void 0, function* () {
+        light.off(0);
+        light.on(20);
+        yield wait(50);
+        light.off(0);
+        light.on(20);
+        yield wait(50);
+        light.off(0);
+        light.on(20);
+        yield wait(50);
+        light.off(0);
+        yield wait(400);
+        light.on(50);
+        yield wait(400);
+    });
+};
 const flickerLights = function () {
     return __awaiter(this, void 0, void 0, function* () {
         console.log('flickering lights');
         for (let light of lights) {
-            light.off(0);
-            light.on(200);
-            yield wait(500);
-            light.off(0);
-            light.on(200);
-            light.off(0);
-            light.on(200);
-            yield wait(500);
-            light.off(0);
-            yield wait(750);
-            light.on(500);
-            yield wait(500);
-            light.off(0);
-            light.on(200);
-            light.off(0);
-            light.on(200);
-            yield wait(500);
-            light.off(0);
-            yield wait(750);
-            light.on(500);
-            yield wait(500);
-            light.off(0);
-            light.on(200);
-            light.off(0);
-            light.on(200);
-            yield wait(500);
-            light.off(0);
-            yield wait(750);
-            light.on(500);
-            yield wait(500);
+            yield flicker(light);
+            yield flicker2(light);
+            yield flicker3(light);
+            yield flicker2(light);
+            yield flicker3(light);
+            yield flicker(light);
             // ending
             light.off(200);
-            yield wait(500);
+            yield wait(750);
         }
     });
 };
@@ -110,6 +129,8 @@ client.on('light-new', function (light) {
         lights.push(light);
         yield lightsReset();
         yield wait(2000);
+        yield flickerLights();
+        yield emergencyLights();
     });
 });
 client.init();
@@ -134,7 +155,6 @@ io.on('connect', socket => {
     console.log('client connected', socket.id);
     socket.on('video-ended', data => {
         console.log('video ended');
-        // lightsFull()
     });
 });
 trigger.on('value', () => __awaiter(void 0, void 0, void 0, function* () {
@@ -148,24 +168,27 @@ trigger.on('value', () => __awaiter(void 0, void 0, void 0, function* () {
         yield emergencyLights();
     }
 }));
-override.on('value', () => {
+override.on('value', () => __awaiter(void 0, void 0, void 0, function* () {
     console.log('override', override.value);
-    // if (override.value && config.activated === false) {
-    //   io.emit('play-video');
-    //   config.activated = true;
-    //   console.log('Triggering video (override)')
-    // }
-});
-reset.on('value', () => {
+    if (override.value && config.activated === false) {
+        io.emit('play-video');
+        config.activated = true;
+        console.log('Triggering video');
+        yield wait(3000);
+        yield flickerLights();
+        yield emergencyLights();
+    }
+}));
+reset.on('value', () => __awaiter(void 0, void 0, void 0, function* () {
     console.log('reset', reset.value);
-    // if (reset.value === true && config.activated === true) {
-    //   io.emit('reset');
-    //   config.activated = false;
-    //   lightsReset()
-    //   setTimeout(function() {
-    //     lightsFull()
-    //   }, 1500)
-    //   console.log('resetting')
-    // }
-});
+    if (reset.value === true && config.activated === true) {
+        io.emit('reset');
+        console.log('resetting');
+        config.activated = false;
+        yield lightsReset();
+        yield wait(1500);
+        yield lightsFull();
+        console.log('reset complete');
+    }
+}));
 //# sourceMappingURL=lift.js.map

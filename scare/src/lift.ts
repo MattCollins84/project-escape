@@ -58,43 +58,59 @@ const emergencyLights = async function(transition: number = 500) {
   }
 }
 
+const flicker = async function(light) {
+  light.off(0);
+  light.on(50);
+  await wait (300)
+  light.off(0);
+  light.on(50);
+  light.off(0);
+  light.on(50);
+  await wait(300)
+}
+
+const flicker2 = async function(light) {
+  light.off(0);
+  light.on(50);
+  await wait(700)
+  light.off(0);
+  light.on(50);
+  await wait(400)
+  light.off(0);
+  await wait(400)
+  light.on(50);
+  await wait(300)
+}
+
+const flicker3 = async function(light) {
+  light.off(0);
+  light.on(20);
+  await wait(50)
+  light.off(0);
+  light.on(20);
+  await wait(50)
+  light.off(0);
+  light.on(20);
+  await wait(50)
+  light.off(0);
+  await wait(400);
+  light.on(50);
+  await wait(400);
+}
+
 const flickerLights = async function() {
   console.log('flickering lights')
   for (let light of lights) {
-    light.off(0);
-    light.on(200);
-    await wait (500)
-    light.off(0);
-    light.on(200);
-    light.off(0);
-    light.on(200);
-    await wait(500)
-    light.off(0)
-    await wait(750)
-    light.on(500)
-    await wait(500)
-    light.off(0);
-    light.on(200);
-    light.off(0);
-    light.on(200);
-    await wait(500)
-    light.off(0)
-    await wait(750)
-    light.on(500)
-    await wait(500)
-    light.off(0);
-    light.on(200);
-    light.off(0);
-    light.on(200);
-    await wait(500)
-    light.off(0)
-    await wait(750)
-    light.on(500)
-    await wait(500)
-    
+    await flicker(light)
+    await flicker2(light)
+    await flicker3(light)
+    await flicker2(light)
+    await flicker3(light)
+    await flicker(light)
+
     // ending
     light.off(200);
-    await wait(500);
+    await wait(750);
   }
 }
 
@@ -102,6 +118,8 @@ client.on('light-new', async function(light) {
   lights.push(light);
   await lightsReset()
   await wait(2000)
+  await flickerLights()
+  await emergencyLights()
 });
 
 client.init()
@@ -131,7 +149,6 @@ io.on('connect', socket => {
 
   socket.on('video-ended', data => {
     console.log('video ended')
-    // lightsFull()
   })
 });
 
@@ -150,30 +167,33 @@ trigger.on('value', async () => {
 
 })
 
-override.on('value', () => {
+override.on('value', async () => {
 
   console.log('override', override.value)
 
-  // if (override.value && config.activated === false) {
-  //   io.emit('play-video');
-  //   config.activated = true;
-  //   console.log('Triggering video (override)')
-  // }
+  if (override.value && config.activated === false) {
+    io.emit('play-video');
+    config.activated = true;
+    console.log('Triggering video')
+    await wait(3000);
+    await flickerLights();
+    await emergencyLights();
+  }
 
 })
 
-reset.on('value', () => {
+reset.on('value', async () => {
   
   console.log('reset', reset.value)
 
-  // if (reset.value === true && config.activated === true) {
-  //   io.emit('reset');
-  //   config.activated = false;
-  //   lightsReset()
-  //   setTimeout(function() {
-  //     lightsFull()
-  //   }, 1500)
-  //   console.log('resetting')
-  // }
+  if (reset.value === true && config.activated === true) {
+    io.emit('reset');
+    console.log('resetting')
+    config.activated = false;
+    await lightsReset()
+    await wait(1500);
+    await lightsFull()
+    console.log('reset complete')
+  }
 
 })
