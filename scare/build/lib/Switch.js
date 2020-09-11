@@ -31,10 +31,12 @@ class Switch extends events_1.EventEmitter {
         return this.powerValue;
     }
     switchOn() {
+        console.log('switch on');
         this.pin.writeSync(1);
     }
     switchOff() {
-        this.pin.writeSync(1);
+        console.log('switch off');
+        this.pin.writeSync(0);
     }
 }
 exports.Switch = Switch;

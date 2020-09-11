@@ -41,10 +41,12 @@ export class Switch extends EventEmitter {
   }
 
   switchOn() {
+    console.log('switch on')
     this.pin.writeSync(1)
   }
 
   switchOff() {
-    this.pin.writeSync(1)
+    console.log('switch off')
+    this.pin.writeSync(0)
   }
 }
