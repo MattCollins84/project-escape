@@ -54,30 +54,55 @@ const lightsReset = function () {
     });
 };
 // lights go pale red
-// const emergencyLights = async function(transition: number = 500) {
-//   console.log('emergency lights')
-//   lights.forEach(async light => {
-//     light.on(0);
-//     light.colorRgb(255, 117, 117, transition)
-//   })
-// }
-// const flickerLights = async function() {
-//   console.log('flickering lights')
-//   lights.forEach(async light => {
-//     light.off(0);
-//     light.on(200);
-//     await wait (500)
-//     light.off(0);
-//     light.on(200);
-//     light.off(0);
-//     light.on(200);
-//     await wait(500)
-//     light.off(0)
-//     await wait(750)
-//     light.on(500)
-//     await wait(500)
-//   })
-// }
+const emergencyLights = function (transition = 500) {
+    return __awaiter(this, void 0, void 0, function* () {
+        console.log('emergency lights');
+        lights.forEach((light) => __awaiter(this, void 0, void 0, function* () {
+            light.on(0);
+            light.colorRgb(255, 117, 117, transition);
+        }));
+    });
+};
+const flickerLights = function () {
+    return __awaiter(this, void 0, void 0, function* () {
+        console.log('flickering lights');
+        lights.forEach((light) => __awaiter(this, void 0, void 0, function* () {
+            light.off(0);
+            light.on(200);
+            yield wait(500);
+            light.off(0);
+            light.on(200);
+            light.off(0);
+            light.on(200);
+            yield wait(500);
+            light.off(0);
+            yield wait(750);
+            light.on(500);
+            yield wait(500);
+            light.off(0);
+            light.on(200);
+            light.off(0);
+            light.on(200);
+            yield wait(500);
+            light.off(0);
+            yield wait(750);
+            light.on(500);
+            yield wait(500);
+            light.off(0);
+            light.on(200);
+            light.off(0);
+            light.on(200);
+            yield wait(500);
+            light.off(0);
+            yield wait(750);
+            light.on(500);
+            yield wait(500);
+            // ending
+            light.off(200);
+            yield wait(500);
+        }));
+    });
+};
 client.on('light-new', function (light) {
     return __awaiter(this, void 0, void 0, function* () {
         lights.push(light);
@@ -97,7 +122,7 @@ const wait = (time) => __awaiter(void 0, void 0, void 0, function* () {
  * PI Stuff
  */
 const debounce = 200;
-const button = new Switch_1.Switch(17, 'in', 'both', { debounceTimeout: debounce });
+const trigger = new Switch_1.Switch(17, 'in', 'both', { debounceTimeout: debounce });
 const reset = new Switch_1.Switch(27, 'in', 'rising', { debounceTimeout: debounce });
 const override = new Switch_1.Switch(22, 'in', 'rising', { debounceTimeout: debounce });
 const config = {
@@ -110,14 +135,17 @@ io.on('connect', socket => {
         // lightsFull()
     });
 });
-button.on('value', () => {
-    console.log('button', button.value);
-    if (button.value && config.activated === false) {
+trigger.on('value', () => __awaiter(void 0, void 0, void 0, function* () {
+    console.log('trigger', trigger.value);
+    if (trigger.value && config.activated === false) {
         io.emit('play-video');
         config.activated = true;
         console.log('Triggering video');
+        yield wait(3000);
+        yield flickerLights();
+        yield emergencyLights();
     }
-});
+}));
 override.on('value', () => {
     console.log('override', override.value);
     // if (override.value && config.activated === false) {

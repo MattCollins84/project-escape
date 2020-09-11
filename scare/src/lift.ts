@@ -50,31 +50,53 @@ const lightsReset = async function() {
 }
 
 // lights go pale red
-// const emergencyLights = async function(transition: number = 500) {
-//   console.log('emergency lights')
-//   lights.forEach(async light => {
-//     light.on(0);
-//     light.colorRgb(255, 117, 117, transition)
-//   })
-// }
+const emergencyLights = async function(transition: number = 500) {
+  console.log('emergency lights')
+  lights.forEach(async light => {
+    light.on(0);
+    light.colorRgb(255, 117, 117, transition)
+  })
+}
 
-// const flickerLights = async function() {
-//   console.log('flickering lights')
-//   lights.forEach(async light => {
-//     light.off(0);
-//     light.on(200);
-//     await wait (500)
-//     light.off(0);
-//     light.on(200);
-//     light.off(0);
-//     light.on(200);
-//     await wait(500)
-//     light.off(0)
-//     await wait(750)
-//     light.on(500)
-//     await wait(500)
-//   })
-// }
+const flickerLights = async function() {
+  console.log('flickering lights')
+  lights.forEach(async light => {
+    light.off(0);
+    light.on(200);
+    await wait (500)
+    light.off(0);
+    light.on(200);
+    light.off(0);
+    light.on(200);
+    await wait(500)
+    light.off(0)
+    await wait(750)
+    light.on(500)
+    await wait(500)
+    light.off(0);
+    light.on(200);
+    light.off(0);
+    light.on(200);
+    await wait(500)
+    light.off(0)
+    await wait(750)
+    light.on(500)
+    await wait(500)
+    light.off(0);
+    light.on(200);
+    light.off(0);
+    light.on(200);
+    await wait(500)
+    light.off(0)
+    await wait(750)
+    light.on(500)
+    await wait(500)
+    
+    // ending
+    light.off(200);
+    await wait(500);
+  })
+}
 
 client.on('light-new', async function(light) {
   lights.push(light);
@@ -96,7 +118,7 @@ const wait = async (time: number) => {
  * PI Stuff
  */
 const debounce = 200;
-const button = new Switch(17, 'in', 'both', { debounceTimeout: debounce });
+const trigger = new Switch(17, 'in', 'both', { debounceTimeout: debounce });
 const reset = new Switch(27, 'in', 'rising', { debounceTimeout: debounce });
 const override = new Switch(22, 'in', 'rising', { debounceTimeout: debounce })
 
@@ -113,14 +135,17 @@ io.on('connect', socket => {
   })
 });
 
-button.on('value', () => {
+trigger.on('value', async () => {
   
-  console.log('button', button.value)
+  console.log('trigger', trigger.value)
 
-  if (button.value && config.activated === false) {
+  if (trigger.value && config.activated === false) {
     io.emit('play-video');
     config.activated = true;
     console.log('Triggering video')
+    await wait(3000);
+    await flickerLights();
+    await emergencyLights();
   }
 
 })
