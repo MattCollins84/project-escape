@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Broken Lift</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+      video::-webkit-media-controls-fullscreen-button {
+        /* display: none; */
+      }
+      video::-webkit-media-controls-play-button {
+        display: none;
+      }
+      video::-webkit-media-controls-timeline {
+        display: none;
+      }
+      video::-webkit-media-controls-current-time-display{
+        display: none;
+      }
+      video::-webkit-media-controls-time-remaining-display {
+        display: none;
+      }
+      video::-webkit-media-controls-mute-button {
+        display: none;
+      }
+      video::-webkit-media-controls-toggle-closed-captions-button {
+        display: none;
+      }
+      video::-webkit-media-controls-volume-slider {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <video width="320" height="240" muted controls id='video'>
+      <source src="/lift.mp4" type="video/mp4">
+    </video>
+    <script>
+      var socket = io.connect();
+      var video = document.getElementById('video')
+      video.onended = function(data) {
+        console.log('video ended')
+        socket.emit('video-ended', true)
+      }
+      socket.on('connect', function() {
+        console.log('connected')
+      });
+      socket.on('play-video', function (data) {
+        console.log('play');
+        video.muted = false;
+        video.currentTime = 0;
+        video.play();
+      });
+      socket.on('reset', function (data) {
+        console.log('reset');
+        video.pause();
+        video.currentTime = 0;
+      });
+    </script>
+  </body>
+</html>
