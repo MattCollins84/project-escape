@@ -100,9 +100,9 @@ const button = new Switch(17, 'in', 'both', { debounceTimeout: debounce });
 const reset = new Switch(27, 'in', 'rising', { debounceTimeout: debounce });
 const override = new Switch(22, 'in', 'rising', { debounceTimeout: debounce })
 
-// const config = {
-//   activated: false
-// }
+const config = {
+  activated: false
+}
 
 io.on('connect', socket => {
   console.log('client connected', socket.id)
@@ -117,11 +117,11 @@ button.on('value', () => {
   
   console.log('button', button.value)
 
-  // if (button.value && config.activated === false) {
-  //   io.emit('play-video');
-  //   config.activated = true;
-  //   console.log('Triggering video')
-  // }
+  if (button.value && config.activated === false) {
+    io.emit('play-video');
+    config.activated = true;
+    console.log('Triggering video')
+  }
 
 })
 
@@ -139,7 +139,7 @@ override.on('value', () => {
 
 reset.on('value', () => {
   
-  console.log('reset', button.value)
+  console.log('reset', reset.value)
 
   // if (reset.value === true && config.activated === true) {
   //   io.emit('reset');
