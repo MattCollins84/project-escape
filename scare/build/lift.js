@@ -148,6 +148,7 @@ const debounce = 200;
 const trigger = new Switch_1.Switch(17, 'in', 'both', { debounceTimeout: debounce });
 const reset = new Switch_1.Switch(27, 'in', 'rising', { debounceTimeout: debounce });
 const override = new Switch_1.Switch(22, 'in', 'rising', { debounceTimeout: debounce });
+const motors = new Switch_1.Switch(4, 'out', null, { debounceTimeout: debounce });
 const config = {
     activated: false
 };
@@ -163,9 +164,12 @@ trigger.on('value', () => __awaiter(void 0, void 0, void 0, function* () {
         io.emit('play-video');
         config.activated = true;
         console.log('Triggering video');
-        yield wait(3000);
+        yield wait(1000);
+        motors.switchOn();
+        yield wait(2000);
         yield flickerLights();
         yield emergencyLights();
+        motors.switchOff();
     }
 }));
 override.on('value', () => __awaiter(void 0, void 0, void 0, function* () {
@@ -174,9 +178,12 @@ override.on('value', () => __awaiter(void 0, void 0, void 0, function* () {
         io.emit('play-video');
         config.activated = true;
         console.log('Triggering video');
-        yield wait(3000);
+        yield wait(1000);
+        motors.switchOn();
+        yield wait(2000);
         yield flickerLights();
         yield emergencyLights();
+        motors.switchOff();
     }
 }));
 reset.on('value', () => __awaiter(void 0, void 0, void 0, function* () {

@@ -139,6 +139,7 @@ const debounce = 200;
 const trigger = new Switch(17, 'in', 'both', { debounceTimeout: debounce });
 const reset = new Switch(27, 'in', 'rising', { debounceTimeout: debounce });
 const override = new Switch(22, 'in', 'rising', { debounceTimeout: debounce })
+const motors = new Switch(4, 'out', null, { debounceTimeout: debounce })
 
 const config = {
   activated: false
@@ -160,9 +161,12 @@ trigger.on('value', async () => {
     io.emit('play-video');
     config.activated = true;
     console.log('Triggering video')
-    await wait(3000);
+    await wait(1000);
+    motors.switchOn()
+    await wait(2000);
     await flickerLights();
     await emergencyLights();
+    motors.switchOff()
   }
 
 })
@@ -175,9 +179,12 @@ override.on('value', async () => {
     io.emit('play-video');
     config.activated = true;
     console.log('Triggering video')
-    await wait(3000);
+    await wait(1000);
+    motors.switchOn()
+    await wait(2000);
     await flickerLights();
     await emergencyLights();
+    motors.switchOff()
   }
 
 })
