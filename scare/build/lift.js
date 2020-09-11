@@ -32,41 +32,43 @@ console.log(publicDir);
 app.use(express.static(publicDir));
 const lights = [];
 // lights on, white
-// const lightsFull = async function(delay: number = 0, transition: number = 500) {
-//   lights.forEach(async light => {
-//     light.on(0);
-//     await wait(delay)
-//     light.colorRgb(255, 255, 255, transition)
-//   })
-// }
+const lightsFull = function (delay = 0, transition = 500) {
+    return __awaiter(this, void 0, void 0, function* () {
+        for (let light of lights) {
+            light.on(0);
+            yield wait(delay);
+            light.colorRgb(255, 255, 255, transition);
+        }
+    });
+};
 // reset lights (flash green to show reset)
 const lightsReset = function () {
     return __awaiter(this, void 0, void 0, function* () {
         console.log('reset lights');
-        lights.forEach((light) => __awaiter(this, void 0, void 0, function* () {
+        for (let light of lights) {
             light.on(0);
             yield wait(1000);
             light.colorRgb(0, 255, 0, 500);
             yield wait(1500);
             light.colorRgb(255, 255, 255, 500);
             yield wait(1500);
-        }));
+        }
     });
 };
 // lights go pale red
 const emergencyLights = function (transition = 500) {
     return __awaiter(this, void 0, void 0, function* () {
         console.log('emergency lights');
-        lights.forEach((light) => __awaiter(this, void 0, void 0, function* () {
+        for (let light of lights) {
             light.on(0);
             light.colorRgb(255, 117, 117, transition);
-        }));
+        }
     });
 };
 const flickerLights = function () {
     return __awaiter(this, void 0, void 0, function* () {
         console.log('flickering lights');
-        lights.forEach((light) => __awaiter(this, void 0, void 0, function* () {
+        for (let light of lights) {
             light.off(0);
             light.on(200);
             yield wait(500);
@@ -100,7 +102,7 @@ const flickerLights = function () {
             // ending
             light.off(200);
             yield wait(500);
-        }));
+        }
     });
 };
 client.on('light-new', function (light) {
