@@ -192,6 +192,7 @@ reset.on('value', () => __awaiter(void 0, void 0, void 0, function* () {
         io.emit('reset');
         console.log('resetting');
         config.activated = false;
+        motors.switchOff();
         yield lightsReset();
         yield wait(1500);
         yield lightsFull();

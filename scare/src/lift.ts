@@ -197,6 +197,7 @@ reset.on('value', async () => {
     io.emit('reset');
     console.log('resetting')
     config.activated = false;
+    motors.switchOff()
     await lightsReset()
     await wait(1500);
     await lightsFull()
