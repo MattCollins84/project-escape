@@ -34,6 +34,7 @@
     <video width="320" height="240" muted controls id='video'>
       <source src="/lift.mp4" type="video/mp4">
     </video>
+    <h1 id="warning">Remember to click on the screen</h1>
     <script>
       var socket = io.connect();
       var video = document.getElementById('video')
@@ -55,6 +56,10 @@
         video.pause();
         video.currentTime = 0;
       });
+      const warning = document.getElementById('warning')
+      document.addEventListener('click', function() {
+        warning.style.display="none";
+      })
     </script>
   </body>
 </html>
