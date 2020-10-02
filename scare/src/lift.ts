@@ -163,7 +163,7 @@ trigger.on('value', async () => {
     console.log('Triggering video')
     await wait(1000);
     motors.switchOn()
-    await wait(2000);
+    await wait(12000);
     await flickerLights();
     await emergencyLights();
     motors.switchOff()
@@ -181,7 +181,7 @@ override.on('value', async () => {
     console.log('Triggering video')
     await wait(1000);
     motors.switchOn()
-    await wait(2000);
+    await wait(12000);
     await flickerLights();
     await emergencyLights();
     motors.switchOff()

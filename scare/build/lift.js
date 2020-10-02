@@ -166,7 +166,7 @@ trigger.on('value', () => __awaiter(void 0, void 0, void 0, function* () {
         console.log('Triggering video');
         yield wait(1000);
         motors.switchOn();
-        yield wait(2000);
+        yield wait(12000);
         yield flickerLights();
         yield emergencyLights();
         motors.switchOff();
@@ -180,7 +180,7 @@ override.on('value', () => __awaiter(void 0, void 0, void 0, function* () {
         console.log('Triggering video');
         yield wait(1000);
         motors.switchOn();
-        yield wait(2000);
+        yield wait(12000);
         yield flickerLights();
         yield emergencyLights();
         motors.switchOff();
