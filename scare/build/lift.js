@@ -170,6 +170,7 @@ trigger.on('value', () => __awaiter(void 0, void 0, void 0, function* () {
         yield flickerLights();
         yield emergencyLights();
         motors.switchOff();
+        console.log('trigger complete');
     }
 }));
 override.on('value', () => __awaiter(void 0, void 0, void 0, function* () {
@@ -184,6 +185,7 @@ override.on('value', () => __awaiter(void 0, void 0, void 0, function* () {
         yield flickerLights();
         yield emergencyLights();
         motors.switchOff();
+        console.log('override complete');
     }
 }));
 reset.on('value', () => __awaiter(void 0, void 0, void 0, function* () {

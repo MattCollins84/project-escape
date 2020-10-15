@@ -10,8 +10,10 @@ class Switch extends events_1.EventEmitter {
         this.setDate = null;
         this.powerValue = false;
         this.pin = new onoff_1.Gpio(pin, direction, edge, options);
+        this.powerValue = !!this.pin.readSync();
+        console.log("PIN", pin, direction, this.powerValue);
         this.pin.watch((err, value) => {
-            console.log('change', err, value);
+            console.log('change', pin, err, value);
             if (err)
                 return this.emit('error', err);
             this.powerValue = !!value;

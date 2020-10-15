@@ -167,6 +167,7 @@ trigger.on('value', async () => {
     await flickerLights();
     await emergencyLights();
     motors.switchOff()
+    console.log('trigger complete')
   }
 
 })
@@ -185,6 +186,7 @@ override.on('value', async () => {
     await flickerLights();
     await emergencyLights();
     motors.switchOff()
+    console.log('override complete')
   }
 
 })

@@ -18,9 +18,11 @@ export class Switch extends EventEmitter {
   constructor(pin: number, direction: TDirection, edge?: TEdge, options: ISwitchOptions = {}) {
     super();
     this.pin = new Gpio(pin, direction, edge, options)
+    this.powerValue = !!this.pin.readSync()
+    console.log("PIN", pin, direction, this.powerValue)
 
     this.pin.watch((err, value) => {
-      console.log('change', err, value)
+      console.log('change', pin, err, value)
       if (err) return this.emit('error', err);
       this.powerValue = !!value;
       if (value) {
